@@ -1,0 +1,26 @@
+<!-- Global Planner launch configuration -->
+<launch>
+    <!-- Arguments set by terminal -->
+    <arg name='map_name' default='smartcity'/>
+    <arg name='distance_between_waypoints' default='0.5'/>
+    <arg name='visualization' default='false'/>
+
+
+    <!-- RVIZ -->
+        <node pkg="rviz" type="rviz" name="rviz" output="screen" />
+        
+    <!-- Parameters of the layer -->
+    <group ns="/t4ac/mapping">
+        <param name="map_path" type="string" value="/home/losi/globalPathPlan/src/CarlaGlobalPathPlanner/src/import/"/>
+        <param name="map_name" type="string" value="$(arg map_name)" />
+        <param name="distance_between_waypoints" type="double" value="$(arg distance_between_waypoints)" />
+    </group>
+
+    <!-- Nodes launched -->
+    <node name="global_planner_node" pkg="CarlaGlobalPathPlanner" type="lane_waypoint_planner.py"/>
+
+    <group if="$(eval visualization == true)">
+        <node name="route_visualizator_node" pkg="t4ac_global_planner_ros" type="route_visualizator.py"/>
+    </group>
+</launch>
+
