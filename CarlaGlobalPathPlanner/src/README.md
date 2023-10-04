@@ -1,2 +1,2 @@
 # CarlaGlobalPathPlanner
-Global path planner algorithm for Carla simulation environment.
+Global path planner algorithm for Carmaker simulation environment.
